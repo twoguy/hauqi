@@ -1,20 +1,22 @@
 <template>
   <div class="hello">
     <header-conponent></header-conponent>
+    <footer-conponent :link-actived="linkActived"></footer-conponent>
   </div>
 </template>
 
 <script>
 import HeaderConponent from './common-components/header'
+import FooterConponent from './common-components/footer'
 
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      linkActived: '/'
     }
   },
-  components: { HeaderConponent }
+  components: { HeaderConponent, FooterConponent }
 }
 </script>
 

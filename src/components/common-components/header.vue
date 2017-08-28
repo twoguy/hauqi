@@ -33,7 +33,10 @@ export default {
 .header{
   height: 60px;
   background: #fff;
-  margin-bottom: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 
   .header__navbar{
     float: left;
