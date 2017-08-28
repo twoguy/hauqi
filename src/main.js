@@ -25,7 +25,7 @@ Vue.use(ElementUI);
 Vue.use(VueAwesomeSwiper)
 Vue.use(Vuex)
 
-const store = new Vuex.store({
+const store = new Vuex.Store({
   state: {
 
   },
