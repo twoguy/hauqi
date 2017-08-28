@@ -19,6 +19,9 @@ Vue.prototype.axios = axios;
 // import vuex
 import Vuex from 'vuex'
 
+// import fort-awesome
+import 'font-awesome/css/font-awesome.css'
+
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
