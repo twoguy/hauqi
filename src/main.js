@@ -12,6 +12,7 @@ import 'element-ui/lib/theme-default/index.css'
 require('swiper/dist/css/swiper.css');
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
+import flexible from 'amfe-flexible/index.js';
 // import axios
 import axios from 'axios'
 Vue.prototype.axios = axios;
