@@ -24,7 +24,21 @@
         <div class="font20 begin-end">2017/8/19-<br>-2017/9/20</div>
       </div>
     </div>
-    <div>点击打钱</div>
+    <div class="pay-button-con">
+      <img class="pay-button" src="./../assets/pay-button.png"></img>
+      <p class="pay-content font20">点击参加众筹</p>
+    </div>
+    <div class="comment-con clearfix">
+      <p class="font20 comment-tittle">评论</p>
+      <div class="font16 comment-add">+</div>
+    </div>
+      <ul class="comment-list">
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+      </ul>
     <footer-component :link-actived="linkActived"></footer-component>
   </div>
 </template>
@@ -87,10 +101,56 @@ export default {
 
 <style scoped>
   /* page main style start */
-  #main{
+  .pay-button-con{
+    background:white;
+    height:3rem;
+    padding-top:0.5rem;
+    margin-top:0.5rem;
+    margin-bottom:0.5rem;
+  }
+  .comment-list>li{
+    padding-top:0.3rem;
+    padding-bottom:0.3rem;
+    border-top:2px solid #e8e8e8;
+    background: white;
+  }
+  .comment-list>li>img{
+    padding:0.2rem;
+    float:left;
+    width:1.1rem;
+  }
+  .comment-list>li>p{
+    float:left;
+    line-height:1.5rem;
+    border-left:1px solid #e8e8e8;
+  }
+  .pay-button{
     width:4rem;
-    height:2.5rem;
-    margin-top:-0.2rem;
+  }
+  .comment-tittle{
+    padding-top:0.25rem;
+    text-align:center;
+    display:block;
+    float:left;
+  }
+  .comment-list{
+    display:block;
+  }
+  .comment-add{
+    text-align:center;
+    display:block;
+    float:right;
+    padding:0.25rem;
+    background:white;
+    -moz-box-shadow: 2px 2px #888888;
+    box-shadow: 2px 2px  #888888;
+  }
+  .pay-content{
+    color:#b1d3f0;
+    font-weight:bold;
+  }
+  .comment-con{
+    padding:0.2rem;
   }
   .icon{
     display:inline-block;
