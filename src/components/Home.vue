@@ -1,14 +1,12 @@
 <template>
   <div class="hello">
-    <header-conponent></header-conponent>
     <home-swiper ref="swiper"></home-swiper>
-    <footer-conponent :link-actived="linkActived"></footer-conponent>
+    <footer-component :link-actived="linkActived"></footer-component>
   </div>
 </template>
 
 <script>
-import HeaderConponent from './common-components/header'
-import FooterConponent from './common-components/footer'
+import FooterComponent from './common-components/footer'
 import HomeSwiper from './home-components/home-swiper'
 
 export default {
@@ -18,7 +16,7 @@ export default {
       linkActived: '/'
     }
   },
-  components: { HeaderConponent, FooterConponent, HomeSwiper },
+  components: { FooterComponent, HomeSwiper },
   mounted: function(){
     this.$refs.swiper.$el.style.height = screen.width/2+'px';
   }

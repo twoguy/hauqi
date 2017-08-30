@@ -22,7 +22,8 @@
           pagination: '.swiper-pagination',
           paginationClickable: true,
           loop: true,
-          autoplay: 2000
+          autoplay: 2000,
+          speed: 1000
         }
       }
     },

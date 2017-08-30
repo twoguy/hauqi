@@ -1,12 +1,20 @@
 <template>
   <div id="app">
+    <header-component></header-component>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import HeaderComponent from './components/common-components/header'
 export default {
-  name: 'app'
+  name: 'app',
+  data: function(){
+    return {
+
+    }
+  },
+  components: { HeaderComponent }
 }
 </script>
 
@@ -24,6 +32,7 @@ export default {
 html{
   background: #f2f2f2;
   margin-top: 70px;
+  margin-bottom: 60px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
