@@ -37,6 +37,7 @@ export default {
   top: 0px;
   left: 0;
   width: 100%;
+  z-index: 999;
 
   .header__navbar{
     float: left;

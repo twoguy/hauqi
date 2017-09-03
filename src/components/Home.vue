@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
-    <home-swiper ref="swiper"></home-swiper>
+  <div class="home">
+    <home-swiper class="home__swiper" ref="swiper"></home-swiper>
+    <list></list>
     <footer-component :link-actived="linkActived"></footer-component>
   </div>
 </template>
@@ -8,6 +9,7 @@
 <script>
 import FooterComponent from './common-components/footer'
 import HomeSwiper from './home-components/home-swiper'
+import List from './common-components/list'
 
 export default {
   name: 'home',
@@ -16,7 +18,7 @@ export default {
       linkActived: '/'
     }
   },
-  components: { FooterComponent, HomeSwiper },
+  components: { FooterComponent, HomeSwiper, List },
   mounted: function(){
     this.$refs.swiper.$el.style.height = screen.width/2+'px';
   }
@@ -41,5 +43,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.home__swiper{
+  margin-bottom: 15px;
 }
 </style>
