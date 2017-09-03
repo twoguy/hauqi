@@ -241,55 +241,6 @@ export default {
     background: url("./../assets/cover.png") no-repeat;
     background-size: contain;
   }
-  .m-list li{
-    margin-right: auto;
-    margin-left: auto;
-    width: 9.733333rem;
-    background-color: #fff;
-    margin-bottom: 1px;
-  }
-  .m-list .gs-img{
-    width: 2.533333rem;
-  }
-  .m-list .gs-details{
-    width: 7.2rem;
-    padding: 0.133333rem;
-  }
-  .m-list .gs-name{
-    color: #000;
-    line-height: 1.3;
-  }
-  .m-list .gs-price{
-    margin-top: 0.266667rem;
-    color: #f32a4a;
-  }
-  .m-list .gp-tag,.m-list .gp-num,.m-list .gp-intro{
-    display: inline-block;
-  }
-  .m-list .gp-tag{
-    padding: 0.026667rem 0.093333rem;
-    background-color: #f5294c;
-    color: #fff;
-    border-radius: 2px;
-  }
-  .m-list .gs-desc{
-    margin-top: 0.266667rem;
-    color: #fd5100;
-  }
-  .m-list .gs-btn{
-    margin-top: -0.4rem;
-    text-align: right;
-  }
-  .m-list .gs-btn span{
-    display: inline-block;
-    margin-top: 0.133333rem;
-    padding: 0.133333rem 0.4rem;
-    text-align: center;
-    background-color: #f5294c;
-    color: #fff;
-    border-radius: 2px;
-  }
-  /* page main style end */
 
   /* page reset css start */
   *{
@@ -341,33 +292,8 @@ export default {
     -ms-flex:1;
     flex:1;
   }
-  .vh-cen{
-    display: -webkit-box;
-    display: -moz-box;
-
-    display: -ms-flexbox;
-
-    display: -webkit-flex;
-    display: flex;
-
-    -webkit-box-pack: center;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-
-    -webkit-box-align: center;
-    -moz-align-items: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
   .text-of-one{
     -webkit-line-clamp: 1;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .text-over-two{
-    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
