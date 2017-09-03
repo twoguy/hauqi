@@ -5,19 +5,55 @@
         <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
         <li class="program-list__detail-list__li">目标金额：600000￥</li>
         <li class="program-list__detail-list__li">
-
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
         </li>
       </ul>
     </li>
-    <li class="program-list__li"></li>
-    <li class="program-list__li"></li>
-    <li class="program-list__li"></li>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
   </ul>
 </template>
 
 <script>
-export default {
+import chart from './chart'
 
+export default {
+  title: 'list',
+  data: function(){
+    return {
+      chartVal : 70
+    }
+  },
+  components: { chart }
 }
 </script>
 
@@ -58,6 +94,17 @@ export default {
             top: 0;
             bottom: 0;
             left: 0;
+          }
+
+          .program-list__detail-list__span{
+            float: left;
+          }
+
+          .chart{
+            width: 2rem;
+            height: 2rem;
+            float: left;
+            margin-top: -0.5rem;
           }
         }
       }

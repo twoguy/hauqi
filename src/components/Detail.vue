@@ -10,7 +10,7 @@
         <span class="icon dollar-icon">$</span>目标金额
         <div class="font32 target-amount">600,000￥</div>
       </div>
-      <div class="shadow-box font16 detail-box">
+      <div class="detail__process shadow-box font16 detail-box">
         <span class="icon percent-icon">%</span>众筹进度
         <chart :chart-val="chartVal"></chart>
       </div>
@@ -59,6 +59,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .detail__process{
+    .chart{
+      width: 4rem;
+      height: 2.5rem;
+      margin-top: -0.2rem;
+    }
+  }
   /* page main style start */
   .pay-button-con{
     background:white;
