@@ -10,9 +10,8 @@
         <span class="icon dollar-icon">$</span>目标金额
         <div class="font32 target-amount">600,000￥</div>
       </div>
-      <div class="shadow-box font16 detail-box">
+      <div class="detail__process shadow-box font16 detail-box">
         <span class="icon percent-icon">%</span>众筹进度
-        <!-- <div id="main"></div> -->
         <chart :chart-val="chartVal"></chart>
       </div>
       <div class="shadow-box font16 detail-box">
@@ -55,51 +54,18 @@ export default {
       chartVal: 70
     }
   },
-  // mounted: function () {
-  //   var myChart = echarts.init(document.getElementById('main'));
-  //   var option = {
-  //     series: [
-  //       {
-  //         name: '业务指标',
-  //         type: 'gauge',
-  //         splitNumber:'0',
-  //         axisLine: {            // 坐标轴线
-  //           show: true,        // 默认显示，属性show控制显示与否
-  //           lineStyle: {       // 属性lineStyle控制线条样式
-  //             color: [[1, '#6d8794']],
-  //             width: 5
-  //           }
-  //         },
-  //         axisTick: {
-  //           show: false,
-  //         },
-  //         pointer : {
-  //           length : '80%',
-  //           width : 8,
-  //           color : 'auto'
-  //         },
-  //         detail : {
-  //           // 其余属性默认使用全局文本样式，详见TEXTSTYLE
-  //           formatter:'{value}%',
-  //           fontFamily: 'Arial',
-  //           fontSize:'',
-  //           width: 100,
-  //           color: '#6d8794',
-  //           rich: {}
-  //         },
-  //         data: [{value: this.val, name: ''}]
-  //       }
-  //     ]
-  //   };
-
-  //   myChart.setOption(option);
-
-  // },
   components: { FooterComponent, chart }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .detail__process{
+    .chart{
+      width: 4rem;
+      height: 2.5rem;
+      margin-top: -0.2rem;
+    }
+  }
   /* page main style start */
   .pay-button-con{
     background:white;
@@ -349,7 +315,7 @@ export default {
     font-size: 60px;
   }
   .font32{
-    font-size: 32px;
+    font-size: 0.7rem;
   }
   [data-dpr="2"] .font20{
     font-size: 64px;

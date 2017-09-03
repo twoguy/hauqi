@@ -1,5 +1,5 @@
 <template>
-  <div id="main"></div>
+  <div class="chart"></div>
 </template>
 
 <script>
@@ -46,13 +46,17 @@ export default {
   },
   props: [ 'chartVal' ],
   mounted: function(){
-    var myChart = echarts.init(document.getElementById('main'));
-
-    myChart.setOption(this.option);
+    var chartsArr = document.getElementsByClassName('chart');
+    for( let i = 0; i < chartsArr.length; i++ ){
+      var myChart = echarts.init(chartsArr[i]);
+      myChart.setOption(this.option);
+    }
   }
 }
 </script>
 
 <style>
-
+  .chart{
+    height: auto;
+  }
 </style>
