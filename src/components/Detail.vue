@@ -266,8 +266,7 @@ export default {
   }
   /* page often use class end */
 
-  /* font-size set start */
-  div{
+  /* font-size set start */  div{
       font-size: 12px;
   }
   [data-dpr="2"] div{
@@ -315,12 +314,22 @@ export default {
     font-size: 60px;
   }
   .font32{
-    font-size: 0.7rem;
+    font-size: 32px;
   }
-  [data-dpr="2"] .font20{
+  [data-dpr="2"] .font32{
     font-size: 64px;
   }
-  [data-dpr="3"] .font20{
+  [data-dpr="3"] .font32{
     font-size: 96px;
+  }
+
+  .font36{
+    font-size: 36px;
+  }
+  [data-dpr="2"] .font36{
+    font-size: 72px;
+  }
+  [data-dpr="3"] .font36{
+    font-size: 108px;
   }
 </style>
