@@ -2,7 +2,7 @@
   <div class="home">
     <home-swiper class="home__swiper" ref="swiper"></home-swiper>
     <list></list>
-    <footer-component :link-actived="linkActived"></footer-component>
+    <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
     }
   },
   components: { FooterComponent, HomeSwiper, List },
+  // created: function(){
+  //   this.axios.get("/home").then((res) => {
+  //     console.log(res)
+  //   })
+  // },
   mounted: function(){
     this.$refs.swiper.$el.style.height = screen.width/2+'px';
   }

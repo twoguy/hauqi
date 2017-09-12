@@ -2,19 +2,34 @@
   <div id="app">
     <header-component></header-component>
     <router-view></router-view>
+    <footer-component :link-actived="linkActived"></footer-component>
   </div>
 </template>
 
 <script>
 import HeaderComponent from './components/common-components/header'
+import FooterComponent from './components/common-components/footer'
 export default {
   name: 'app',
   data: function(){
     return {
-
+      newPath : this.$route.path
     }
   },
-  components: { HeaderComponent }
+  computed: {
+    linkActived: function(){
+      return this.newPath
+    }
+  },
+  methods: {
+    freshPath: function(){
+      this.newPath = this.$route.path;
+    }
+  },
+  watch: {
+    '$route': 'freshPath'
+  },
+  components: { HeaderComponent , FooterComponent }
 }
 </script>
 

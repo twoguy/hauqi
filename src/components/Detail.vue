@@ -38,7 +38,7 @@
         <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
         <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
       </ul>
-    <footer-component :link-actived="linkActived"></footer-component>
+    <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
 
@@ -52,6 +52,17 @@ export default {
     return {
       linkActived: '/detail',
       chartVal: 70
+    }
+  },
+  created: function(){
+    this.queryDetail();
+  },
+  methods: {
+    queryDetail: function(){
+      let projectID = this.$route.query.projectID;
+      this.axios.get(`/detailPage?id=${projectID}`).then(function(res){
+        console.log(res);
+      })
     }
   },
   components: { FooterComponent, chart }

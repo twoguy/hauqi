@@ -1,29 +1,28 @@
 <template>
   <div class="user">
-    个人页面
     <div class="user-con clearfix">
-    <img class="user-avatar" src="./../assets/demo-user.png"></img>
-    <p class="user-name font32">Winifred<br>Kelly</p>
-    <div class="user-items">
-    <div class="user-item-con">
-    <p class="user-item-tittle font16">账户余额</p>
-    <p class="user-item-detail font36">231￥</p>
+      <img class="user-avatar" src="./../assets/demo-user.png"></img>
+      <p class="user-name font32">Winifred<br>Kelly</p>
+      <div class="user-items">
+        <div class="user-item-con">
+          <p class="user-item-tittle font16">账户余额</p>
+          <p class="user-item-detail font36">231￥</p>
+        </div>
+        <div class="user-item-con">
+          <p class="user-item-tittle font16">参与项目</p>
+          <p class="user-item-detail font36">4</p>
+        </div>
+        <div class="user-item-con">
+          <p class="user-item-tittle font16">发起项目</p>
+          <p class="user-item-detail font36">0</p>
+        </div>
+        <div class="user-item-con">
+          <p class="user-item-tittle font16">个人资料</p>
+          <p class="user-item-detail font36">+</p>
+        </div>
+      </div>
     </div>
-    <div class="user-item-con">
-    <p class="user-item-tittle font16">参与项目</p>
-    <p class="user-item-detail font36">4</p>
-    </div>
-    <div class="user-item-con">
-    <p class="user-item-tittle font16">发起项目</p>
-    <p class="user-item-detail font36">0</p>
-    </div>
-    <div class="user-item-con">
-    <p class="user-item-tittle font16">个人资料</p>
-    <p class="user-item-detail font36">+</p>
-    </div>
-    </div>
-    </div>
-    <footer-component :link-actived="linkActived"></footer-component>
+    <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
 
@@ -38,8 +37,15 @@ export default {
       linkActived: '/user'
     }
   },
-  components: { FooterComponent},
-
+  created: function(){
+    this.query();
+  },
+  methods: {
+    query: function(){
+      // let userName
+    }
+  },
+  components: { FooterComponent}
 }
 </script>
 
