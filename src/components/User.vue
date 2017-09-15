@@ -22,13 +22,17 @@
         </div>
       </div>
     </div>
+    <div class="join-project" v-on:click="cashRoute">
+    <p class="join-project-tittle font32">参与项目</p>
+        <list ></list>
+    </div>
     <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
 
 <script>
 import FooterComponent from './common-components/footer'
-
+import List from './common-components/list'
 
 export default {
   name: 'user',
@@ -43,14 +47,24 @@ export default {
   methods: {
     query: function(){
       // let userName
+    },
+    cashRoute:function(e){
+      this.$router.push(`/cashroute?id=5oegb4`)
     }
   },
-  components: { FooterComponent}
+  components: { FooterComponent,List}
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.join-project-tittle{
+  text-align:left;
+  border-left:25px solid #80baec;
+  padding-left:10px;
+  background:white;
+  margin-bottom:20px;
+}
 .user{
     background:#eaeaea;
 }

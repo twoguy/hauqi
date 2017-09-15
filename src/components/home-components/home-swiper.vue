@@ -2,13 +2,13 @@
 <template>
   <swiper class="home-swiper" :options="swiperOption">
     <swiper-slide>
-      <img class="home-swiper__img" src="../../assets/cafe-workspace-with-diary-picjumbo-com.jpg" alt="">
+      <img class="home-swiper__img" src="../../assets/r2.jpg" alt="">
     </swiper-slide>
     <swiper-slide>
-      <img class="home-swiper__img" src="../../assets/girl-reading-a-book-at-home-picjumbo-com.jpg" alt="">
+      <img class="home-swiper__img" src="../../assets/r3.jpg" alt="">
     </swiper-slide>
     <swiper-slide>
-      <img class="home-swiper__img" src="../../assets/yummy-fresh-burger-with-french-fries-picjumbo-com.jpg" alt="">
+      <img class="home-swiper__img" src="../../assets/r1.jpg" alt="">
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>

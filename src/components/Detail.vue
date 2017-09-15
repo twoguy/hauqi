@@ -3,7 +3,10 @@
     <div class="m-banner"></div>
     <div class="detail-brief shadow-box">
       <h2 class="detail-brief-tittle font20">项目简介</h2>
-      <p class="detail-brief-brief font16">The program is designed for a competition by flower flag whit UESTC and SWUFE</p>
+      <p class="detail-brief-brief font16">他们需要一份午餐。
+平均每天走数小时山路去上学，
+中午只能以冰冷的红薯土豆或者喝自来水充饥，
+长期的营养不良导致他们身材矮小，智力发育迟缓。 </p>
     </div>
     <div class="detail-box-con clearfix">
       <div class="shadow-box font16 detail-box">
@@ -23,7 +26,7 @@
         <div class="font20 begin-end">2017/8/19-<br>-2017/9/20</div>
       </div>
     </div>
-    <div class="pay-button-con">
+    <div v-on:click="redirect" class="pay-button-con">
       <img class="pay-button" src="./../assets/pay-button.png"></img>
       <p class="pay-content font20">点击参加众筹</p>
     </div>
@@ -32,11 +35,11 @@
       <div class="font16 comment-add">+</div>
     </div>
       <ul class="comment-list">
-        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
-        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
-        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
-        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
-        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">我，可爱，打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">字词</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">别说了，老哥，闭着眼打0</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">赞助你们</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">哎 我给你们打钱</p></li>
+        <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">不够再说</p></li>
       </ul>
     <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
@@ -58,6 +61,9 @@ export default {
     this.queryDetail();
   },
   methods: {
+    redirect:function(e){
+      this.$router.push('/purchase')
+    },
     queryDetail: function(){
       let projectID = this.$route.query.projectID;
       this.axios.get(`/detailPage?id=${projectID}`).then(function(res){
