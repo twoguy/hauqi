@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <home-swiper class="home__swiper" ref="swiper"></home-swiper>
-    <list></list>
+    <list :items="items" :url="url"></list>
     <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
@@ -15,15 +15,17 @@ export default {
   name: 'home',
   data () {
     return {
-      linkActived: '/'
+      linkActived: '/',
+      items: {},
+      url: 'Detail'
     }
   },
   components: { FooterComponent, HomeSwiper, List },
-  // created: function(){
-  //   this.axios.get("/home").then((res) => {
-  //     console.log(res)
-  //   })
-  // },
+  created: function(){
+     this.axios.get('/home').then((res) => {
+       this.items = res;
+     })
+   },
   mounted: function(){
     this.$refs.swiper.$el.style.height = screen.width/2+'px';
   }

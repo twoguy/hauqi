@@ -2,19 +2,19 @@
   <div class="user">
     <div class="user-con clearfix">
       <img class="user-avatar" src="./../assets/demo-user.png"></img>
-      <p class="user-name font32">Winifred<br>Kelly</p>
+      <p class="user-name font32">{{result.userName}}</p>
       <div class="user-items">
         <div class="user-item-con">
           <p class="user-item-tittle font16">账户余额</p>
-          <p class="user-item-detail font36">231￥</p>
+          <p class="user-item-detail font36">{{result.fortune}}￥</p>
         </div>
         <div class="user-item-con">
           <p class="user-item-tittle font16">参与项目</p>
-          <p class="user-item-detail font36">4</p>
+          <p class="user-item-detail font36">{{length}}</p>
         </div>
         <div class="user-item-con">
           <p class="user-item-tittle font16">发起项目</p>
-          <p class="user-item-detail font36">0</p>
+          <p class="user-item-detail font36">{{result.userStartNew}}</p>
         </div>
         <div class="user-item-con">
           <p class="user-item-tittle font16">个人资料</p>
@@ -22,10 +22,13 @@
         </div>
       </div>
     </div>
-    <div class="join-project" v-on:click="cashRoute">
-    <p class="join-project-tittle font32">参与项目</p>
-        <list ></list>
+    <div v-on:click="redirect" class="pay-button-con">
+      <img class="pay-button" src="./../assets/pay-button.png"></img>
+      <p class="pay-content font20">发起项目</p>
     </div>
+
+    <p class="join-project-tittle font32">参与项目</p>
+    <list :items="result.userProject" :url="url"></list>
     <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
@@ -38,19 +41,29 @@ export default {
   name: 'user',
   data () {
     return {
-      linkActived: '/user'
+      linkActived: '/user',
+      result: {},
+      length: '',
+      url: 'Cashroute'
     }
   },
   created: function(){
     this.query();
   },
   methods: {
-    query: function(){
-      // let userName
+    redirect:function(e){
+      this.$router.push('/project')
     },
-    cashRoute:function(e){
+    query: function(){
+      this.axios.get('/user').then((res) => {
+        this.result = res;
+        console.log(this.result)
+        this.length = this.result.userProject.length;
+      })
+    },
+/*    cashRoute:function(e){
       this.$router.push(`/cashroute?id=5oegb4`)
-    }
+    }*/
   },
   components: { FooterComponent,List}
 }
@@ -58,6 +71,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+  .pay-button-con{
+    background:white;
+    height:3rem;
+    padding-top:0.5rem;
+    margin-top:0.5rem;
+    margin-bottom:0.5rem;
+  }
+  .pay-content{
+    color:#b1d3f0;
+    font-weight:bold;
+  }
+  .pay-button{
+    width:4rem;
+  }
 .join-project-tittle{
   text-align:left;
   border-left:25px solid #80baec;

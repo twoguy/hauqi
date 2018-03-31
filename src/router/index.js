@@ -6,6 +6,7 @@ import User from '@/components/User'
 import Login from '@/components/Login'
 import Purchase from '@/components/Purchase'
 import Cashroute from '@/components/Cashroute'
+import Project from '@/components/Project'
 Vue.use(Router)
 
 export default new Router({
@@ -40,8 +41,12 @@ export default new Router({
       path: '/cashroute',
       name: 'Cashroute',
       component: Cashroute
+    },
+    {
+      path: '/Project',
+      name: 'Project',
+      component: Project
     }
 
-    
   ]
 })

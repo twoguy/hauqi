@@ -1,17 +1,17 @@
 <template>
   <div class="detail">
-    <div class="m-banner"></div>
+    <div class="m-banner" v-bind:style="{background: 'url(' + project.projectImage + ')'}"></div>
     <div class="detail-brief shadow-box">
       <h2 class="detail-brief-tittle font20">项目简介</h2>
-      <p class="detail-brief-brief font16">他们需要一份午餐。
-平均每天走数小时山路去上学，
-中午只能以冰冷的红薯土豆或者喝自来水充饥，
-长期的营养不良导致他们身材矮小，智力发育迟缓。 </p>
+      <p class="detail-brief-brief font16" >
+        {{project.projectIntroduce}}
+        <!--{{项目简介}}-->
+      </p>
     </div>
     <div class="detail-box-con clearfix">
       <div class="shadow-box font16 detail-box">
         <span class="icon dollar-icon">$</span>目标金额
-        <div class="font32 target-amount">600,000￥</div>
+        <div class="font32 target-amount">{{project.projectAim}}</div>
       </div>
       <div class="detail__process shadow-box font16 detail-box">
         <span class="icon percent-icon">%</span>众筹进度
@@ -19,11 +19,11 @@
       </div>
       <div class="shadow-box font16 detail-box">
         <span class="icon people-icon">№</span>参与人数
-        <div class="font32 pay-people">1,240</div>
+        <div class="font32 pay-people">{{project.projectParticipated}}</div>
       </div>
       <div class="shadow-box font16 detail-box">
         <span class="icon at-icon">@</span>截止日期
-        <div class="font20 begin-end">2017/8/19-<br>-2017/9/20</div>
+        <div class="font20 begin-end">{{project.projectEndTime}}</div>
       </div>
     </div>
     <div v-on:click="redirect" class="pay-button-con">
@@ -34,7 +34,7 @@
       <p class="font20 comment-tittle">评论</p>
       <div class="font16 comment-add">+</div>
     </div>
-      <ul class="comment-list">
+      <ul class="comment-list" v-for="">
         <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">字词</p></li>
         <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">别说了，老哥，闭着眼打0</p></li>
         <li class="clearfix"><img class="avtar" src="./../assets/avatar.png"></img><p class="font20">赞助你们</p></li>
@@ -54,6 +54,7 @@ export default {
   data () {
     return {
       linkActived: '/detail',
+      project: {},
       chartVal: 70
     }
   },
@@ -62,12 +63,14 @@ export default {
   },
   methods: {
     redirect:function(e){
-      this.$router.push('/purchase')
+      this.$router.push({name: 'Purchase', params: {projectID: this.project.projectID}})
     },
     queryDetail: function(){
-      let projectID = this.$route.query.projectID;
-      this.axios.get(`/detailPage?id=${projectID}`).then(function(res){
+      let projectID = this.$route.params.projectID;
+      console.log(projectID)
+      this.axios.get(`/detail?project=${projectID}`).then(function(res){
         console.log(res);
+        this.project = res;
       })
     }
   },
@@ -321,24 +324,8 @@ export default {
   [data-dpr="3"] .font18{
     font-size: 54px;
   }
-  .font20{
-    font-size: 20px;
-  }
-  [data-dpr="2"] .font20{
-    font-size: 40px;
-  }
-  [data-dpr="3"] .font20{
-    font-size: 60px;
-  }
-  .font32{
-    font-size: 32px;
-  }
-  [data-dpr="2"] .font32{
-    font-size: 64px;
-  }
-  [data-dpr="3"] .font32{
-    font-size: 96px;
-  }
+
+
 
   .font36{
     font-size: 36px;

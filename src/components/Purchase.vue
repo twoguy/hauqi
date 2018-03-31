@@ -1,8 +1,8 @@
 <template>
 <div>
-<div class="font36 header">请输入交易码</div>
-<input class="input" type="text"></input>
-<p class="btn">确认</p>
+<div class="font36 header">输入资助金额</div>
+<input class="input" type="number" v-model="projectAim" required/>
+<p class="btn" @click="commit">确认</p>
 </div>
 </template>
 
@@ -11,11 +11,20 @@
 export default {
   title: 'purchase',
   components:{},
-    data () {
+  data () {
     return {
+      projectAim: "",
       linkActived: '/purchase'
     }
   },
+  methods: {
+    commit: function () {
+      let projectID = this.$route.params.projectID
+      this.axios.post("/trade",{projectId: projectID,value: projectAim}).then(function (res) {
+        
+      })
+    }
+  }
 }
 </script>
 

@@ -1,46 +1,61 @@
 <template>
   <ul class="program-list">
-    <li class="program-list__li">
+    <li class="program-list__li" v-for="(item,index) in items" v-bind:style="{background: 'url(' + item.projectImage + ')'}" v-on:click="pushRoute(index)">
       <ul class="program-list__detail-list">
-        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
-        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li style="display: none">{{item.projectID}}</li>
+        <li class="program-list__detail-list__li">众筹项目：{{item.projectName}}</li>
+        <li class="program-list__detail-list__li">目标金额：{{item.projectAim}}￥</li>
         <li class="program-list__detail-list__li">
           <span class="program-list__detail-list__span">众筹进度：</span>
-          <chart :chart-val="chartVal"></chart>
-        </li>
-      </ul>
-    </li>
-    <li class="program-list__li">
-      <ul class="program-list__detail-list">
-        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
-        <li class="program-list__detail-list__li">目标金额：600000￥</li>
-        <li class="program-list__detail-list__li">
-          <span class="program-list__detail-list__span">众筹进度：</span>
-          <chart :chart-val="chartVal"></chart>
-        </li>
-      </ul>
-    </li>
-    <li class="program-list__li">
-      <ul class="program-list__detail-list">
-        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
-        <li class="program-list__detail-list__li">目标金额：600000￥</li>
-        <li class="program-list__detail-list__li">
-          <span class="program-list__detail-list__span">众筹进度：</span>
-          <chart :chart-val="chartVal"></chart>
-        </li>
-      </ul>
-    </li>
-    <li class="program-list__li">
-      <ul class="program-list__detail-list">
-        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
-        <li class="program-list__detail-list__li">目标金额：600000￥</li>
-        <li class="program-list__detail-list__li">
-          <span class="program-list__detail-list__span">众筹进度：</span>
-          <chart :chart-val="chartVal"></chart>
+          <chart :chart-val="item.chartVal"></chart>
         </li>
       </ul>
     </li>
   </ul>
+  <!--<ul class="program-list">
+    <router-link to="/detail" tag="li">
+      <li class="program-list__li">
+        <ul class="program-list__detail-list">
+          <li class="program-list__detail-list__li">众筹项目：{{projectName}}</li>
+          <li class="program-list__detail-list__li">目标金额：{{money}}￥</li>
+          <li class="program-list__detail-list__li">
+            <span class="program-list__detail-list__span">众筹进度：</span>
+            <chart :chart-val="chartVal"></chart>
+          </li>
+        </ul>
+      </li>
+    </router-link>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
+    <li class="program-list__li">
+      <ul class="program-list__detail-list">
+        <li class="program-list__detail-list__li">众筹项目：希望小学建设</li>
+        <li class="program-list__detail-list__li">目标金额：600000￥</li>
+        <li class="program-list__detail-list__li">
+          <span class="program-list__detail-list__span">众筹进度：</span>
+          <chart :chart-val="chartVal"></chart>
+        </li>
+      </ul>
+    </li>
+  </ul>-->
 </template>
 
 <script>
@@ -50,9 +65,14 @@ export default {
   title: 'list',
   data: function(){
     return {
-      chartVal : 70
     }
   },
+  methods: {
+    pushRoute(e){
+      this.$router.push({name: `${this.url}`,params: {projectID: this.items[e].projectID}})
+    }
+  },
+  props: [ 'items' ,'url'],
   components: { chart }
 }
 </script>
