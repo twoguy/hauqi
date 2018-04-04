@@ -67,9 +67,7 @@ export default {
     },
     queryDetail: function(){
       let projectID = this.$route.params.projectID;
-      console.log(projectID)
       this.axios.get(`/detail?project=${projectID}`).then(function(res){
-        console.log(res);
         this.project = res;
       })
     }

@@ -57,7 +57,6 @@ export default {
     query: function(){
       this.axios.get('/user').then((res) => {
         this.result = res;
-        console.log(this.result)
         this.length = this.result.userProject.length;
       })
     },

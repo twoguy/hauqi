@@ -7,15 +7,9 @@
         <div @click="signUp" :class="['login__choose__item','login__choose__item2', choose == '注册'? 'login__choose__item-active':'' ]">注 册</div>
       </div>
       <form class="login__form">
-        <input v-model="userName" class="login__input" type="text" placeholder="用户名">
-        <input v-model="userPassword" class="login__input" type="text" placeholder="密 码">
-        <div v-if="choose === '注册'" class="login__select__container">
-          <span class="login__select__span">用户类型</span>
-          <select v-model="userType" class="login__select">
-            <option value="0">普通用户</option>
-            <option value="1">活动发起者</option>
-          </select>
-        </div>
+        <input v-model="userId" class="login__input" type="text" placeholder="账号">
+        <input v-if="choose === '注册'" v-model="userName" class="login__input" type="text" placeholder="姓名">
+        <input v-model="userPassword" class="login__input" type="password" placeholder="密 码">
         <div @click="submit" class="login__submit">{{choose}}</div>
       </form>
     </div>
@@ -28,6 +22,7 @@ export default {
   data: function(){
     return {
       choose : '登录',
+      userId: '',
       userName : '',
       userPassword : ''
     }
@@ -49,9 +44,9 @@ export default {
         })
       }else{
         this.axios.post("/signUp",{
+          userId: this.userId,
           userName: this.userName,
-          userPassword: this.userPassword,
-          userType: this.userType
+          userPassword: this.userPassword
         }).then(function(res){
           console.log(res);
         })

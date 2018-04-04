@@ -1,35 +1,30 @@
 <template>
 <div>
 <div class="font32">资金流向</div>
-<ul class="detail-class">
-<li class='font16'>为王家堡小学学生买笔记本</li>
-<li class='font16'>金额：50</li>
-<li class='font16'>时间：2017年7月15日</li>
-<li class='font16'>发起人：朱宽</li>
-<li class='font16'>接收方：王姨小卖部</li>
+<ul class="detail-class" v-for="projectdate in projectDate">
+  <li class='font16'>{{projectdate.title}}</li>
+  <li class='font16'>金额：{{projectdate.fortune}}</li>
+  <li class='font16'>时间：{{projectdate.time}}</li>
+  <li class='font16'>发起人：{{projectdate.starter}}</li>
+  <li class='font16'>接收方：{{projectdate.receiver}}</li>
 </ul>
-
-<ul class="detail-class">
-<li class='font16'>为王家堡小学学生订校服</li>
-<li class='font16'>金额：5000</li>
-<li class='font16'>时间：2017年7月25日</li>
-<li class='font16'>发起人：朱宽</li>
-<li class='font16'>接收方：A21</li>
-</ul>
-
-<ul class="detail-class">
-<li class='font16'>为王家堡小学学生买课本</li>
-<li class='font16'>金额：10000</li>
-<li class='font16'>时间：2017年7月30日</li>
-<li class='font16'>发起人：朱宽</li>
-<li class='font16'>接收方：新华书店</li>
-</ul>
-
 
 </div>
 </template>
 
-
+<script>
+  export  default {
+    name: "cashroute",
+    data: function () {
+      return {
+        projectDate: []
+      }
+    },
+    created: function () {
+      this.projectDate = this.$route.params.projectDate;
+    }
+  }
+</script>
 
 
 <style scoped>
