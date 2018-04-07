@@ -69,7 +69,10 @@ export default {
   },
   methods: {
     pushRoute(e){
-      this.$router.push({name: `${this.url}`,params: {projectID: this.items[e].projectID}})
+      if (this.url == "Detail")
+        this.$router.push({name: `${this.url}`,params: {projectID: this.items[e].projectID}})
+      else
+        this.$router.push({name: `${this.url}`,params: {projectDate: this.items[e].projectDate}})
     }
   },
   props: [ 'items' ,'url'],

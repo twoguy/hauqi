@@ -1,5 +1,5 @@
 <template>
-  <form action="/startNew" method="post" class="elegant-aero">
+  <form action="/startNew" method="post" class="elegant-aero" enctype="multipart/form-data">
     <label>
       <span>项目名称</span>
       <input id="name" type="text" name="projectName" placeholder="" required/>

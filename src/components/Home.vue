@@ -16,14 +16,16 @@ export default {
   data () {
     return {
       linkActived: '/',
-      items: {},
+      items: [],
       url: 'Detail'
     }
   },
   components: { FooterComponent, HomeSwiper, List },
   created: function(){
      this.axios.get('/home').then((res) => {
-       this.items = res;
+       console.log(res)
+       console.log(res.data)
+       this.items = res.data;
      })
    },
   mounted: function(){

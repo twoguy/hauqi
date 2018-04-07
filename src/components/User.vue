@@ -42,7 +42,7 @@ export default {
   data () {
     return {
       linkActived: '/user',
-      result: {},
+      result: [],
       length: '',
       url: 'Cashroute'
     }
@@ -56,7 +56,7 @@ export default {
     },
     query: function(){
       this.axios.get('/user').then((res) => {
-        this.result = res;
+        this.result = res.data;
         this.length = this.result.userProject.length;
       })
     },

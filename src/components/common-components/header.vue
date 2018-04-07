@@ -12,7 +12,7 @@
         <i class="fa fa-search"></i>
       </div>
     </div>
-    <div class="header__add">
+    <div class="header__add" v-on:click="redirect">
       <i class="fa fa-plus"></i>
     </div>
   </header>
@@ -24,6 +24,11 @@ export default {
   data: function(){
     return {
 
+    }
+  },
+  methods: {
+    redirect:function(e){
+      this.$router.push('/project')
     }
   }
 }

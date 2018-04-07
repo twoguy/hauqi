@@ -37,7 +37,7 @@ export default {
     submit: function(){
       if(this.choose == "登录"){
         this.axios.post("/login",{
-          userName: this.userName,
+          userId: this.userId,
           userPassword: this.userPassword
         }).then(function(res){
           console.log(res);

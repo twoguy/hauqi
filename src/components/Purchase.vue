@@ -2,13 +2,13 @@
   <div>
     <div class="font36 header">输入资助金额</div>
     <input class="input" type="number" v-model="projectAim" required/>
-    <p class="btn" @click="commit">确认</p>
-    <div v-if="status == 'success'" class="success font36">
+    <p class="btn" v-on:click="commit">确认</p>
+<!--    <div v-if="status == 'success'" class="success font36">
       支付成功
     </div>
     <div v-else-if="status == 'failed'" class="fail font36">
       支付失败
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -27,19 +27,8 @@ export default {
   methods: {
     commit: function () {
       let projectID = this.$route.params.projectID
-      this.axios.post("/trade",{projectId: projectID,value: this.projectAim}).then(function (res) {
-        if (res == "success"){
-          this.status = res;
-          setTimeout(function () {
-            this.$route.push("/user")
-          },1000)
-        }
-        else {
-          this.status = res;
-          setTimeout(function () {
-            this.status = "";
-          },1000)
-        }
+      this.axios.post("/trade",{projectId: projectID,value: this.projectAim}).then((res) => {
+        this.$route.push("/user")
       })
     }
   }
