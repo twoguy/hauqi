@@ -40,7 +40,9 @@ export default {
           userId: this.userId,
           userPassword: this.userPassword
         }).then(function(res){
-          console.log(res);
+          this.$router.push('/home')
+        }).error(function (res) {
+          alert("登录失败")
         })
       }else{
         this.axios.post("/signUp",{
@@ -48,7 +50,9 @@ export default {
           userName: this.userName,
           userPassword: this.userPassword
         }).then(function(res){
-          console.log(res);
+          this.choose = "登录"
+        }).error(function (res) {
+          alert("注册失败")
         })
       }
     }

@@ -22,10 +22,9 @@ export default {
   },
   components: { FooterComponent, HomeSwiper, List },
   created: function(){
-     this.axios.get('/home').then((res) => {
-       console.log(res)
-       console.log(res.data)
+     this.axios.get('/api/home').then((res) => {
        this.items = res.data;
+       this.items.chartVal = parseInt((res.data.projectFortune / res.data.projectAim)*100)
      })
    },
   mounted: function(){

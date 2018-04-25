@@ -1,6 +1,6 @@
 <template>
   <ul class="program-list">
-    <li class="program-list__li" v-for="(item,index) in items" v-bind:style="{background: 'url(' + item.projectImage + ')'}" v-on:click="pushRoute(index)">
+    <li class="program-list__li" v-for="(item,index) in items" v-bind:style="{background: 'url(' + item.projectImage + ')', backgroundSize: 'cover',backgroundRepeat: 'no-repeat', fontcolor: 'white'}" v-on:click="pushRoute(index)">
       <ul class="program-list__detail-list">
         <li style="display: none">{{item.projectID}}</li>
         <li class="program-list__detail-list__li">众筹项目：{{item.projectName}}</li>

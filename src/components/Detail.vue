@@ -54,8 +54,7 @@ export default {
   data () {
     return {
       linkActived: '/detail',
-      project: {},
-      chartVal: 70
+      project: []
     }
   },
   created: function(){
@@ -69,6 +68,8 @@ export default {
       let projectID = this.$route.params.projectID;
       this.axios.get(`/detail?project=${projectID}`).then(function(res){
         this.project = res.data;
+        console.log(this.project)
+        this.project.chartVal = parseInt((res.data.projectFortune / res.data.projectAim)*100)
       })
     }
   },

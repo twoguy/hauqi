@@ -28,7 +28,7 @@
     </div>
 
     <p class="join-project-tittle font32">参与项目</p>
-    <list :items="result.userProject" :url="url"></list>
+    <list :items="result.userProject" :url="url" ></list>
     <!-- <footer-component :link-actived="linkActived"></footer-component> -->
   </div>
 </template>
@@ -58,6 +58,7 @@ export default {
       this.axios.get('/user').then((res) => {
         this.result = res.data;
         this.length = this.result.userProject.length;
+        this.result.userProject.chartVal = parseInt((res.data.userProject.projectFortune / res.data.userProject.projectAim)*100)
       })
     },
 /*    cashRoute:function(e){
