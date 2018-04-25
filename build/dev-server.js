@@ -20,7 +20,26 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 // https://github.com/chimurai/http-proxy-middleware
 var proxyTable = config.dev.proxyTable
 
-var app = express()
+/*var app = express()
+
+var appData = require('../mock/mock.json')
+var home = appData.home;
+var user = appData.user
+// 获取数据
+var apiRoutes = express.Router();
+//get请求
+apiRoutes.get('/home',function(req,res){
+  res.json({
+    data:home
+  });
+});
+apiRoutes.get('/user',function(req,res){
+  res.json({
+    data:user
+  });
+});
+app.use('/api',apiRoutes);*/
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
