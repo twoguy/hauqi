@@ -58,7 +58,8 @@ export default {
       this.axios.get('/user').then((res) => {
         this.result = res.data;
         this.length = this.result.userProject.length;
-        this.result.userProject.chartVal = parseInt((res.data.userProject.projectFortune / res.data.userProject.projectAim)*100)
+        this.result.userProject.forEach((item,index)=> {item.chartVal =  Number(parseInt((item.projectFortune / item.projectAim)*100))
+        })
       })
     },
 /*    cashRoute:function(e){

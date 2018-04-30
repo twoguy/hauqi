@@ -66,9 +66,9 @@ export default {
     },
     queryDetail: function(){
       let projectID = this.$route.params.projectID;
-      this.axios.get(`/detail?project=${projectID}`).then(function(res){
+      this.axios.get(`/detail?projectId=${projectID}`).then(function(res){
         this.project = res.data;
-        console.log(this.project)
+        console.log("project:"+this.project)
         this.project.chartVal = parseInt((res.data.projectFortune / res.data.projectAim)*100)
       })
     }
