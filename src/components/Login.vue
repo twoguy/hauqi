@@ -11,6 +11,8 @@
         <input v-if="choose === '注册'" v-model="userName" class="login__input" type="text" placeholder="姓名">
         <input v-model="userPassword" class="login__input" type="password" placeholder="密 码">
         <div @click="submit" class="login__submit">{{choose}}</div>
+        <div v-if="status === 'lfailed'" class="login_failed">账号或者密码错误</div>
+        <div v-else-if="status === 'sfailed'" class="login_failed">注册失败</div>
       </form>
     </div>
   </div>
@@ -24,7 +26,8 @@ export default {
       choose : '登录',
       userId: '',
       userName : '',
-      userPassword : ''
+      userPassword : '',
+      status: ''
     }
   },
   methods: {
@@ -42,7 +45,10 @@ export default {
         }).then(function(res){
           this.$router.push('/home')
         }).error(function (res) {
-          alert("登录失败")
+          this.status = 'lfailed'
+          setTimeout(function(){
+            this.status = ''
+          }.bind(this),1500)
         })
       }else{
         this.axios.post("/signUp",{
@@ -52,7 +58,10 @@ export default {
         }).then(function(res){
           this.choose = "登录"
         }).error(function (res) {
-          alert("注册失败")
+          this.status = 'sfailed'
+          setTimeout(function(){
+            this.status = ''
+          }.bind(this),1500)
         })
       }
     }
@@ -143,5 +152,13 @@ export default {
         border-radius: 0 0 10px 10px;
       }
     }
+  }
+  .login_failed {
+    height: 1.5rem;
+    font-size: 0.45rem;
+    line-height: 1rem;
+    text-align: center;
+    color: red;
+    font-weight: 100;
   }
 </style>

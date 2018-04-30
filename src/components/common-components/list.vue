@@ -7,7 +7,7 @@
         <li class="program-list__detail-list__li">目标金额：{{item.projectAim}}￥</li>
         <li class="program-list__detail-list__li">
           <span class="program-list__detail-list__span">众筹进度：</span>
-          <chart :chart-val="item.chartVal"></chart>
+          <chart :chart-val="item.chartVal" :order="index"></chart>
         </li>
       </ul>
     </li>

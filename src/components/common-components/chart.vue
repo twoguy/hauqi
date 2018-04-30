@@ -44,13 +44,11 @@ export default {
       }
     }
   },
-  props: [ 'chartVal' ],
+  props: [ 'chartVal' ,'order'],
   mounted: function(){
     var chartsArr = document.getElementsByClassName('chart');
-    for( let i = 0; i < chartsArr.length; i++ ){
-      var myChart = echarts.init(chartsArr[i]);
-      myChart.setOption(this.option);
-    }
+    var myChart = echarts.init(chartsArr[this.order]);
+    myChart.setOption(this.option);
   }
 }
 </script>
