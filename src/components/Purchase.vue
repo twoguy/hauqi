@@ -24,11 +24,17 @@ export default {
       status:''
     }
   },
+  created: function(){
+    let userId = sessionStorage.getItem('userId');
+    if(userId === null){
+      this.$router.push('/')
+    }
+  },
   methods: {
     commit: function () {
       let projectID = this.$route.params.projectID
       this.axios.post("/trade",{projectId: projectID,value: this.projectAim}).then((res) => {
-        this.$route.push("/user")
+        this.$router.push("/user")
       })
     }
   }

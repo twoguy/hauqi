@@ -47,7 +47,12 @@ export default {
       url: 'Cashroute'
     }
   },
+
   created: function(){
+    let userId = sessionStorage.getItem('userId');
+    if(userId === null){
+      this.$router.push('/')
+    }
     this.query();
   },
   methods: {

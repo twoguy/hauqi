@@ -13,7 +13,7 @@ export default new Router({
   mode: 'hash',
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: Home
     },
@@ -28,7 +28,7 @@ export default new Router({
       component: User
     },
     {
-      path: '/login',
+      path: '/',
       name: 'Login',
       component: Login
     },

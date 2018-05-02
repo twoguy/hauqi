@@ -38,26 +38,28 @@ export default {
       this.choose = '注册';
     },
     submit: function(){
-      if(this.choose == "登录"){
+      if(this.choose === "登录"){
         this.axios.post("/login",{
           userId: this.userId,
           userPassword: this.userPassword
-        }).then(function(res){
+        }).then((res)=> {
+          sessionStorage.setItem("userId",this.userId)
           this.$router.push('/home')
-        }).error(function (res) {
+        }).catch((error) => {
           this.status = 'lfailed'
           setTimeout(function(){
             this.status = ''
           }.bind(this),1500)
         })
-      }else{
+      }
+      else{
         this.axios.post("/signUp",{
           userId: this.userId,
           userName: this.userName,
           userPassword: this.userPassword
         }).then(function(res){
           this.choose = "登录"
-        }).error(function (res) {
+        }).catch((error) => {
           this.status = 'sfailed'
           setTimeout(function(){
             this.status = ''

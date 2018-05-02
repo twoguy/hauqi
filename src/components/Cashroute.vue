@@ -8,7 +8,27 @@
   <li class='font16'>发起人：{{projectdate.starter}}</li>
   <li class='font16'>接收方：{{projectdate.receiver}}</li>
 </ul>
-
+<ul class="detail-class">
+  <li>为王家堡小学学生买笔记本</li>
+  <li>金额：50</li>
+  <li>时间：2017年7月15日</li>
+  <li>发起人：朱宽</li>
+  <li>接收方：杰哥小卖部</li>
+</ul>
+<ul class="detail-class">
+  <li>为王家堡小学学生买体育用品</li>
+  <li>金额：500</li>
+  <li>时间：2017年8月22日</li>
+  <li>发起人：朱宽</li>
+  <li>接收方：体育用品店</li>
+</ul>
+<ul class="detail-class">
+  <li>为王家堡小学学生提供午餐</li>
+  <li>金额：1500</li>
+  <li>时间：2017年12月22日</li>
+  <li>发起人：李明</li>
+  <li>接收方：李老师</li>
+</ul>
 </div>
 </template>
 
@@ -20,9 +40,6 @@
         projectDate: []
       }
     },
-    created: function () {
-      this.projectDate = this.$route.params.projectDate;
-    }
   }
 </script>
 

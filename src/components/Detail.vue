@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <div class="m-banner" v-bind:style="{background: 'url(' + project.projectImage + ')'}"></div>
+    <div class="m-banner" v-bind:style="{backgroundImage: 'url(' + project.projectImage + ')',backgroundSize: 'cover',backgroundRepeat: 'no-repeat'}"></div>
     <div class="detail-brief shadow-box">
       <h2 class="detail-brief-tittle font20">项目简介</h2>
       <p class="detail-brief-brief font16" >
@@ -11,19 +11,19 @@
     <div class="detail-box-con clearfix">
       <div class="shadow-box font16 detail-box">
         <span class="icon dollar-icon">$</span>目标金额
-        <div class="font32 target-amount">{{project.projectAim}}</div>
+        <div class="font36 target-amount">{{project.projectAim}}</div>
       </div>
       <div class="detail__process shadow-box font16 detail-box">
         <span class="icon percent-icon">%</span>众筹进度
-        <chart :chart-val="chartVal"></chart>
+        <chart :chart-val="project.chartVal" :order = 0></chart>
       </div>
       <div class="shadow-box font16 detail-box">
         <span class="icon people-icon">№</span>参与人数
-        <div class="font32 pay-people">{{project.projectParticipated}}</div>
+        <div class="font36 pay-people">{{project.projectParticipated}}</div>
       </div>
       <div class="shadow-box font16 detail-box">
         <span class="icon at-icon">@</span>截止日期
-        <div class="font20 begin-end">{{project.projectEndTime}}</div>
+        <div class="font32 begin-end">{{project.projectEndTime}}</div>
       </div>
     </div>
     <div v-on:click="redirect" class="pay-button-con">
@@ -58,6 +58,10 @@ export default {
     }
   },
   created: function(){
+    let userId = sessionStorage.getItem('userId');
+    if(userId === null){
+      this.$router.push('/')
+    }
     this.queryDetail();
   },
   methods: {
@@ -66,10 +70,9 @@ export default {
     },
     queryDetail: function(){
       let projectID = this.$route.params.projectID;
-      this.axios.get(`/detail?projectId=${projectID}`).then(function(res){
+      this.axios.get(`/detail?projectId=${projectID}`).then((res)=> {
         this.project = res.data;
-        console.log("project:"+this.project)
-        this.project.chartVal = parseInt((res.data.projectFortune / res.data.projectAim)*100)
+        this.project.chartVal =  Number(parseInt((this.project.projectFortune / this.project.projectAim)*100))
       })
     }
   },
@@ -221,10 +224,7 @@ export default {
     padding-bottom: 0.666667rem;
   }
   .m-banner{
-    width: 10.0rem;
     height: 6.4rem;
-    background: url("./../assets/cover.png") no-repeat;
-    background-size: contain;
   }
 
   /* page reset css start */
@@ -324,7 +324,15 @@ export default {
     font-size: 54px;
   }
 
-
+  .font32{
+    font-size: 32px;
+  }
+  [data-dpr="2"] .font32{
+    font-size: 64px;
+  }
+  [data-dpr="3"] .font32{
+    font-size: 96px;
+  }
 
   .font36{
     font-size: 36px;

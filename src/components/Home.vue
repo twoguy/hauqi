@@ -15,24 +15,27 @@ export default {
   name: 'home',
   data () {
     return {
-      linkActived: '/',
+      linkActived: '/home',
       items: [],
       url: 'Detail'
     }
   },
-  components: { FooterComponent, HomeSwiper, List },
+
+
   created: function(){
+      let userId = sessionStorage.getItem('userId');
+      if(userId === null){
+        this.$router.push('/')
+      }
      this.axios.get('/home').then((res) => {
        this.items = res.data
-       this.items.forEach((item,index)=> {item.chartVal =  Number(parseInt((item.projectFortune / item.projectAim)*100))
-         console.log("chartVal:"+item.chartVal)
-       }
-       )
+       this.items.forEach((item,index)=> {item.chartVal =  Number(parseInt((item.projectFortune / item.projectAim)*100))})
      })
    },
   mounted: function(){
     this.$refs.swiper.$el.style.height = screen.width/2+'px';
-  }
+  },
+  components: { FooterComponent, HomeSwiper, List },
 }
 </script>
 
