@@ -12,7 +12,7 @@
         <i class="fa fa-search"></i>
       </div>
     </div>
-    <div class="header__add" v-on:click="redirect">
+    <div class="header__add" v-on:click="redirect" title="发起项目">
       <i class="fa fa-plus"></i>
     </div>
   </header>
@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     redirect:function(e){
-      this.$router.push('/project')
+      if (this.$route.path != "/" && this.$route.path != "/project"){
+        console.log(this.$route.path)
+        this.$router.push('/project')
+      }
+
     }
   }
 }
