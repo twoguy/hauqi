@@ -15,7 +15,7 @@
       </div>
       <div class="detail__process shadow-box font16 detail-box">
         <span class="icon percent-icon">%</span>众筹进度
-        <chart :chart-val="project.chartVal" :order = 0></chart>
+        <chart :chart-val="project.chartVal" :order = 0 v-if="flag"></chart>
       </div>
       <div class="shadow-box font16 detail-box">
         <span class="icon people-icon">№</span>参与人数
@@ -54,27 +54,30 @@ export default {
   data () {
     return {
       linkActived: '/detail',
-      project: []
+      project: {},
+      flag: false
     }
   },
-  created: function(){
+  mounted: function(){
     let userId = sessionStorage.getItem('userId');
     if(userId === null){
       this.$router.push('/')
     }
-    this.queryDetail();
+    let projectID = this.$route.params.projectID;
+    if (projectID === undefined){
+      projectID = 0
+    }
+    console.log(projectID)
+    this.axios.get(`/detail?projectId=${projectID}`).then((res)=> {
+      this.project = res.data;
+      this.project.chartVal =  Number(parseInt((this.project.projectFortune / this.project.projectAim)*100))
+      this.flag = true
+    })
   },
   methods: {
     redirect:function(e){
       this.$router.push({name: 'Purchase', params: {projectID: this.project.projectID}})
     },
-    queryDetail: function(){
-      let projectID = this.$route.params.projectID;
-      this.axios.get(`/detail?projectId=${projectID}`).then((res)=> {
-        this.project = res.data;
-        this.project.chartVal =  Number(parseInt((this.project.projectFortune / this.project.projectAim)*100))
-      })
-    }
   },
   components: { FooterComponent, chart }
 }

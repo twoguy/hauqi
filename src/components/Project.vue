@@ -1,35 +1,42 @@
 <template>
-  <form action="/startNew" method="post" class="elegant-aero" enctype="multipart/form-data">
+  <div class="elegant-aero" >
     <label>
       <span>项目名称</span>
-      <input id="name" type="text" name="projectName" placeholder="" required/>
+      <input id="name" type="text" name="projectName" v-model="project.projectName" placeholder="" required/>
     </label>
 
     <label>
       <span>项目简介</span>
-      <textarea id="info" name="projectIntroduce"  placeholder="" required></textarea>
+      <textarea id="info" name="projectIntroduce"  v-model="project.projectIntroduce" placeholder="" required></textarea>
     </label>
 
     <label>
       <span>目标资金</span>
-      <input id="email" type="number" name="projectAim" placeholder="" required/>
+      <input id="email" type="number" v-model="project.projectAim" name="projectAim" placeholder="" required/>
     </label>
 
     <label>
       <span>截止日期</span>
-      <input id="date" type="date" name="projectEndTime" placeholder="" required/>
+      <input id="date" type="date" v-model="project.projectEndTime" name="projectEndTime" placeholder="" required/>
     </label>
 
     <label>
       <span>项目图片</span>
-      <input id="image" type="file" name="projectImage" required/>
+      <input id="image"  @change="uploading($event)" type="file" name="projectImage" accept="image/*" required/>
     </label>
-
+    <label v-show="isEmpty">
+      <span></span>
+      <b style="text-align: right;color: red">项目信息填写不完整</b>
+    </label>
+    <label v-show="status">
+      <span></span>
+      <b style="text-align: right;color: red">发布项目失败</b>
+    </label>
     <label>
       <span>&nbsp;</span>
-      <input type="submit" class="button" value="Send" />
+      <input type="submit" @click="submit" class="button" value="Send" />
     </label>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -38,6 +45,11 @@
         data () {
           return {
             linkActived: '/',
+            project:{
+              file: ""
+            },
+            isEmpty: false,
+            status: ""
           }
         },
         created: function(){
@@ -46,6 +58,42 @@
             this.$router.push('/')
           }
         },
+        methods: {
+          uploading(event){
+            this.project.file = event.target.files[0];//获取文件
+          },
+          submit: function () {
+            let formData = new FormData();
+            formData.append("projectName", this.project.projectName);
+            formData.append("projectIntroduce", this.project.projectIntroduce);
+            formData.append("projectAim", this.project.projectAim);
+            formData.append("projectEndTime", this.project.projectEndTime);
+            formData.append("projectImage", this.project.file);
+            let config = {
+              headers: {
+                'Content-Type': 'multipart/form-data'  //之前说的以表单传数据的格式来传递fromdata
+              }
+            };
+            if (this.project.projectName&&this.project.projectIntroduce&&this.project.projectAim&&this.project.projectEndTime&&this.project.file)
+            {
+              this.isEmpty = false
+              this.axios.post('/startNew', formData, config).then( (res) => {
+                this.$router.push('/user')
+              }).catch((error) =>{
+                if (error.response.status != 200){
+                  this.status = 'failed'
+                  setTimeout(function(){
+                    this.status = ''
+                  }.bind(this),3000)
+                }
+              });
+            }
+            else {
+              this.isEmpty = true
+            }
+
+          }
+        }
     }
 
 </script>

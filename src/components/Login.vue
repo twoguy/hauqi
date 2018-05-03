@@ -46,10 +46,12 @@ export default {
           sessionStorage.setItem("userId",this.userId)
           this.$router.push('/home')
         }).catch((error) => {
-          this.status = 'lfailed'
-          setTimeout(function(){
-            this.status = ''
-          }.bind(this),1500)
+          if (error.response.status != 200){
+            this.status = 'lfailed'
+            setTimeout(function(){
+              this.status = ''
+            }.bind(this),1500)
+          }
         })
       }
       else{
@@ -57,13 +59,15 @@ export default {
           userId: this.userId,
           userName: this.userName,
           userPassword: this.userPassword
-        }).then(function(res){
+        }).then((res) => {
           this.choose = "登录"
         }).catch((error) => {
-          this.status = 'sfailed'
-          setTimeout(function(){
-            this.status = ''
-          }.bind(this),1500)
+          if (error.response.status != 200){
+            this.status = 'sfailed'
+            setTimeout(function(){
+              this.status = ''
+            }.bind(this),1500)
+          }
         })
       }
     }

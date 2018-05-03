@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <router-link :class="['footer__link', linkActived == '/' ? 'footer__link__actived' : '']" to="/"><i class="fa fa-home"></i></router-link>
+    <router-link :class="['footer__link', linkActived == '/home' ? 'footer__link__actived' : '']" to="/home"><i class="fa fa-home"></i></router-link>
     <router-link :class="['footer__link', linkActived == '/user' ? 'footer__link__actived' : '']" to="/user"><i class="fa fa-user-circle-o"></i></router-link>
     <router-link :class="['footer__link', linkActived == '/detail' ? 'footer__link__actived' : '']" to="/detail"><i class="fa fa-file-text"></i></router-link>
   </footer>

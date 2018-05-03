@@ -15,7 +15,7 @@ export default {
             type: 'gauge',
             splitNumber:'0',
             axisLine: {            // 坐标轴线
-              show: true,        // 默认显示，属性show控制显示与否
+              show: false,        // 默认显示，属性show控制显示与否
               lineStyle: {       // 属性lineStyle控制线条样式
                 color: [[1, '#6d8794']],
                 width: 5
@@ -24,8 +24,10 @@ export default {
             axisTick: {
               show: false,
             },
+            axisLabel:{
+              show:false
+            },
             pointer : {
-              length : '80%',
               width : 8,
               color : 'auto'
             },
@@ -36,9 +38,8 @@ export default {
               fontSize:'',
               width: 100,
               color: '#6d8794',
-              rich: {}
             },
-            data: [{value: this.chartVal, name: ''}]
+            data: [{value: this.chartVal}]
           }
         ]
       }
