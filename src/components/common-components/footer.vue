@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" style="z-index: 100">
     <router-link :class="['footer__link', linkActived == '/home' ? 'footer__link__actived' : '']" to="/home"><i class="fa fa-home"></i></router-link>
     <router-link :class="['footer__link', linkActived == '/user' ? 'footer__link__actived' : '']" to="/user"><i class="fa fa-user-circle-o"></i></router-link>
     <router-link :class="['footer__link', linkActived == '/detail' ? 'footer__link__actived' : '']" to="/detail"><i class="fa fa-file-text"></i></router-link>

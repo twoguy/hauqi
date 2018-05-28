@@ -1,7 +1,8 @@
 <template>
   <ul class="program-list">
-    <li class="program-list__li" v-for="(item,index) in items" v-bind:style="{backgroundImage: 'url(' + item.projectImage + ')', backgroundSize: 'cover',backgroundRepeat: 'no-repeat', color: 'white'}" v-on:click="pushRoute(index)">
-      <ul class="program-list__detail-list">
+    <li class="program-list__li" v-for="(item,index) in items" v-bind:style="{backgroundImage: 'url(' + item.projectImage + ')', backgroundSize: 'cover',backgroundRepeat: 'no-repeat', color: 'white',zIndex: '-1',fontWeight: 'bold'}" v-on:click="pushRoute(index)">
+      <div style="background: #000; opacity: 0.2;width: 112%; height: 4rem; border-radius: 10px; z-index: 5 ;margin: -0.5rem"></div>
+      <ul class="program-list__detail-list" style="z-index: 10 ;position: relative;top: -100%">
         <li style="display: none">{{item.projectID}}</li>
         <li class="program-list__detail-list__li">众筹项目：{{item.projectName}}</li>
         <li class="program-list__detail-list__li">目标金额：{{item.projectAim}}￥</li>
@@ -68,11 +69,12 @@ export default {
     }
   },
   methods: {
-    pushRoute(e){
+    pushRoute(i){
       if (this.url === "Detail")
-        this.$router.push({name: `${this.url}`,params: {projectID: this.items[e].projectID}})
+        this.$router.push({name: `${this.url}`,params: {projectID: this.items[i].projectID}})
       else
-        this.$router.push({name: `${this.url}`,params: {projectDate: this.items[e].projectDate}})
+        /*this.$router.push({name: `${this.url}`,params: {projectDate: this.items[i].projectDate}})*/
+        this.$router.push({name: `${this.url}`,params: {projectID: this.items[i].projectID}})
     }
   },
   props: [ 'items' ,'url'],

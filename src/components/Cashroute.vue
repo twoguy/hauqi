@@ -1,34 +1,47 @@
 <template>
 <div>
-<div class="font32">资金流向</div>
-<ul class="detail-class" v-for="projectdate in projectDate">
-  <li class='font16'>{{projectdate.title}}</li>
-  <li class='font16'>金额：{{projectdate.fortune}}</li>
-  <li class='font16'>时间：{{projectdate.time}}</li>
-  <li class='font16'>发起人：{{projectdate.starter}}</li>
-  <li class='font16'>接收方：{{projectdate.receiver}}</li>
-</ul>
-<ul class="detail-class">
-  <li>为王家堡小学学生买笔记本</li>
-  <li>金额：50</li>
-  <li>时间：2017年7月15日</li>
-  <li>发起人：朱宽</li>
-  <li>接收方：杰哥小卖部</li>
-</ul>
-<ul class="detail-class">
-  <li>为王家堡小学学生买体育用品</li>
-  <li>金额：500</li>
-  <li>时间：2017年8月22日</li>
-  <li>发起人：朱宽</li>
-  <li>接收方：体育用品店</li>
-</ul>
-<ul class="detail-class">
-  <li>为王家堡小学学生提供午餐</li>
-  <li>金额：1500</li>
-  <li>时间：2017年12月22日</li>
-  <li>发起人：李明</li>
-  <li>接收方：李老师</li>
-</ul>
+  <div class="font32">资金流向</div>
+  <div  class="detail-class" v-for="(projectdate, index) in projectDate">
+      <div class='font14'><label>项目名称：</label>{{projectdate.title}}</div>
+      <div class='font14'><label>金额：</label>{{projectdate.money}}</div>
+      <div class='font14'><label>时间：</label>{{projectdate.time}}</div>
+      <div class='font14'><label>发起人：</label>{{projectdate.starter}}</div>
+      <div class='font14'><label>接收方：</label>{{projectdate.reciver}}</div>
+  <!--<ul class="detail-class">
+    <li>为王家堡小学学生买笔记本</li>
+    <li>金额：50</li>
+    <li>时间：2017年7月15日</li>
+    <li>发起人：朱宽</li>
+    <li>接收方：杰哥小卖部</li>
+  </ul>
+  <ul class="detail-class">
+    <li>为王家堡小学学生买体育用品</li>
+    <li>金额：500</li>
+    <li>时间：2017年8月22日</li>
+    <li>发起人：朱宽</li>
+    <li>接收方：体育用品店</li>
+  </ul>
+  <ul class="detail-class">
+    <li>为王家堡小学学生提供午餐</li>
+    <li>金额：1500</li>
+    <li>时间：2017年12月22日</li>
+    <li>发起人：李明</li>
+    <li>接收方：李老师</li>
+  </ul>-->
+  </div>
+  <div style="text-align: center;margin-top: -0.4rem;margin-bottom: 0.9rem" v-if="!flag">
+    <button style="width: 75%; height: 1.2rem;" v-on:click="add">新增流向</button>
+  </div>
+  <div class="detail-class" v-else>
+    <div class='font14'><label>项目名称：</label> <input  v-model="addDate.title"></div>
+    <div class='font14'><label>金额：</label> <input  v-model="addDate.money"></div>
+    <div class='font14'><label>时间：</label> <input  v-model="addDate.time"></div>
+    <div class='font14'><label>发起人：</label> <input  v-model="addDate.starter"></div>
+    <div class='font14'><label>接收方：</label> <input  v-model="addDate.reciver"></div>
+    <p class='font14 tip' v-show="tip">请填写完整的资金流向信息！</p>
+    <button class="font14" v-on:click="confirm">确认修改</button>
+    <button class="font14" v-on:click="abolish">取消</button>
+  </div>
 </div>
 </template>
 
@@ -37,9 +50,52 @@
     name: "cashroute",
     data: function () {
       return {
-        projectDate: []
+        projectID: '',
+        projectDate: [],
+        addDate: {},
+        flag: false,
+        tip: false
       }
     },
+    created: function () {
+      let userId = sessionStorage.getItem('userId');
+      if(userId === null){
+        this.$router.push('/');
+        return
+      }
+      this.projectID = this.$route.params.projectID;
+      this.axios.post('/getMoneyDetail',{projectId: this.projectID}).then((res) => {
+        this.projectDate = res.data;
+      })
+    },
+    methods: {
+      add() {
+        this.flag = true;
+      },
+      confirm(){
+        console.log(this.addDate.title);
+        if (this.addDate.title&&this.addDate.money&&this.addDate.time&&this.addDate.starter&&this.addDate.reciver){
+          this.addDate.projectId = this.projectID;
+          this.axios.post('/setMoneyDetail',this.addDate).then((res) => {
+            this.flag = false;
+            this.addDate = {};
+            this.axios.post('/getMoneyDetail',{projectId: this.projectID}).then((res) => {
+              this.projectDate = res.data;
+            })
+          })
+        }else {
+          this.tip = true;
+          setTimeout(function(){
+            this.tip = false
+          }.bind(this),1500);
+        }
+
+      },
+      abolish(){
+        this.addDate = {};
+        this.flag = false;
+      }
+    }
   }
 </script>
 
@@ -50,12 +106,25 @@
      width:80%;
      list-style:none;
      background:white;
-     padding:0.5rem;
+     padding:0.6rem 0.6rem 0.8rem 0.6rem;
      margin-bottom:1rem;
  }
- .detail-class>li{
-     text-align:left;
+ .detail-class div{
+     text-align: left;
+     padding: 0.1rem ;
      border-bottom:1px solid gray;
+     margin: 0.2rem;
+ }
+ .detail-class label{
+   width: 28%;
+   float: left;
+   text-align: right;
+ }
+ .tip{
+   width: 100%;
+   color: red;
+   text-align: center;
+   margin: 0.2rem;
  }
   .clearfix:after{
     content: " ";

@@ -43,11 +43,11 @@ export default {
           userId: this.userId,
           userPassword: this.userPassword
         }).then((res)=> {
-          sessionStorage.setItem("userId",this.userId)
+          sessionStorage.setItem("userId",this.userId);
           this.$router.push('/home')
         }).catch((error) => {
-          if (error.response.status != 200){
-            this.status = 'lfailed'
+          if (error.response.status !== 200){
+            this.status = 'lfailed';
             setTimeout(function(){
               this.status = ''
             }.bind(this),1500)
@@ -62,7 +62,7 @@ export default {
         }).then((res) => {
           this.choose = "登录"
         }).catch((error) => {
-          if (error.response.status != 200){
+          if (error.response.status !== 200){
             this.status = 'sfailed'
             setTimeout(function(){
               this.status = ''

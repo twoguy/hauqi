@@ -55,7 +55,7 @@
         created: function(){
           let userId = sessionStorage.getItem('userId');
           if(userId === null){
-            this.$router.push('/')
+            this.$router.push('/');
           }
         },
         methods: {
@@ -76,12 +76,12 @@
             };
             if (this.project.projectName&&this.project.projectIntroduce&&this.project.projectAim&&this.project.projectEndTime&&this.project.file)
             {
-              this.isEmpty = false
+              this.isEmpty = false;
               this.axios.post('/startNew', formData, config).then( (res) => {
                 this.$router.push('/user')
               }).catch((error) =>{
-                if (error.response.status != 200){
-                  this.status = 'failed'
+                if (error.response.status !== 200){
+                  this.status = 'failed';
                   setTimeout(function(){
                     this.status = ''
                   }.bind(this),3000)
@@ -91,7 +91,6 @@
             else {
               this.isEmpty = true
             }
-
           }
         }
     }

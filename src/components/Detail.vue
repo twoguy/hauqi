@@ -62,6 +62,7 @@ export default {
     let userId = sessionStorage.getItem('userId');
     if(userId === null){
       this.$router.push('/')
+      return
     }
     let projectID = this.$route.params.projectID;
     if (projectID === undefined){

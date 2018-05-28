@@ -52,6 +52,7 @@ export default {
     let userId = sessionStorage.getItem('userId');
     if(userId === null){
       this.$router.push('/')
+      return
     }
     this.query();
   },

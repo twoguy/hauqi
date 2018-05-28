@@ -26,9 +26,10 @@ export default {
       let userId = sessionStorage.getItem('userId');
       if(userId === null){
         this.$router.push('/')
+        return
       }
      this.axios.get('/home').then((res) => {
-       this.items = res.data
+       this.items = res.data;
        this.items.forEach((item,index)=> {item.chartVal =  Number(parseInt((item.projectFortune / item.projectAim)*100))})
      })
    },
