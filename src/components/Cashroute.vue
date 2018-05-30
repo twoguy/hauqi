@@ -29,7 +29,7 @@
     <li>接收方：李老师</li>
   </ul>-->
   </div>
-  <div style="text-align: center;margin-top: -0.4rem;margin-bottom: 0.9rem" v-if="!flag">
+  <div style="text-align: center; margin-top: 0.5rem  ;margin-bottom: 0.9rem" v-if="!flag">
     <button style="width: 75%; height: 1.2rem;" v-on:click="add">新增流向</button>
   </div>
   <div class="detail-class" v-else>
